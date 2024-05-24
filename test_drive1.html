@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>시승신청예약</title>
+  <!-- 초기화 -->
+  <link rel="stylesheet" type="text/css" href="./css/reset.css">
+  <!-- 기본서식 -->
+  <link rel="stylesheet" type="text/css" href="./css/base.css">
+  <!-- 공통서식 -->
+  <link rel="stylesheet" type="text/css" href="./css/common.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- 서브페이지 서식 -->
+  <style>
+    header{
+      position: static;
+      background: var(--m_bg_color);
+    }
+    header .gnb ul li a{
+      color: var(--f_color1);
+    }
+    header i.fas{color:var(--f_color1);}
+    .testform h2{
+      font-size: 40px;
+    }
+
+    .sub_top{
+      background:url(./images/bg-main-test-driving.125a037.jpg) 100%;
+      height: 300px;
+      color: #fff;
+      text-align: center;
+    }
+    .sub_top h2{
+      font-size: 32px;
+      margin-bottom: 30px;
+    }
+    .sub_top p{font-size: 16px;}
+    .sub_top_title{width: 50%; margin: 0 auto; padding-top: 100px;}
+    .testform form{
+      width: 500px;
+      height: 700px;
+      border: 2px solid #ccc;
+      border-radius: 30px;
+      margin: 100px auto;
+      line-height: 30px;
+      padding: 70px 0px 0px 0px;
+    }
+    .testform_list {width: 500px; text-align: center;}
+    .testform_list legend{font-size: 32px; font-weight: bold; margin: 30px auto;}
+    .testform_list p{padding: 10px; font-weight: bold;}
+    .p01 label{width: 100px; float: left; text-align: left; text-indent: 30px; }
+    .box01{width: 300px; height: 30px;}
+    .box03{width: 308px; height: 37px;}
+
+    .test_btn > input{
+      padding: 10px 50px;
+      margin: 20px 20px;
+      background:#032852;;
+      border: none;
+      color: #fff;
+      border-radius: 10px;
+    }
+    .test_btn > input:last-child{
+      background: #215499;
+    }
+    .p02{transform: translateX(-89px);}
+    .p02 input{transform: translateX(25px);}
+    .p02 > label{margin-left: 25px;}
+  </style>  
+</head>
+<body>
+  <!-- 상단헤더영역 -->
+  <header>
+    <h1>
+      <a href="index.html" title="메인페이지로 바로가기">
+        <img src="./images/logo-casper_black.png" alt="캐스퍼로고">
+      </a>
+    </h1>
+
+    <!-- 내비게이션 -->
+    <nav class="gnb">
+      <ul>
+        <li><a href="#" title="소개">소개</a></li>
+        <li><a href="#" title="체험">체험</a></li>
+        <li><a href="#" title="이벤트">이벤트</a></li>
+        <li><a href="#" title="구매">구매</a></li>
+        <li><a href="#" title="고객지원">고객지원</a></li>
+      </ul>
+    </nav>
+
+    <a href="login.html"><i class="fas fa-user"></i></a>
+    <i class="fas fa-bell"></i><!-- 알림아이콘 -->
+  </header>
+
+  <main>
+    <div class="sub_top">
+      <div class="sub_top_title">
+        <h2>시승 신청</h2>
+        <p>캐스퍼가 제공하는 편리한 시승 서비스를 이용해보세요.</p>
+      </div>
+    </div>
+    
+
+    <section class="testform">
+
+      <form action="db_insert.php" name="시승신청" method="post">
+        <fieldset class="testform_list">
+          <legend>시승신청 온라인 예약</legend>
+          <!-- name데이터 베이스 테이블명 , required 필수 입력!!!! -->
+          <p class="p01"><label for="">고객명 : </label><input class="box01" type="text" name="name" required></p>
+          <p class="p01"><label for="">휴대폰 : </label><input class="box01" type="text" name="phone" required></p>
+          <p class="p02">SMS수신여부 :
+              <input type="radio" name="sms" id="s01" value="Y">
+              <label for="s01">수신</label>
+              <input type="radio" name="sms" id="s02" value="N">
+              <label for="s02">수신안함</label>
+          </p>
+          <P class="p01">
+            <label for="">이메일 주소</label><input  class="box01" type="email" name="email" required>
+          </P>
+          <p class="p01">
+            <label for="">전시장 선택 : </label>
+            <select name="region" id="region" required class="box03">
+              <option value="">전시장 선택</option>
+              <option value="강남점">강남점</option>
+              <option value="송파점">송파점</option>
+              <option value="한남점">한남점</option>
+            </select>
+          </p>
+          <p class="p01">
+            <label for="">차량 선택 : </label>
+            <select name="car" id="car" required class="box03">
+              <option value="">차량 선택</option>
+              <option value="캐스퍼">캐스퍼</option>
+              <option value="캐스퍼 인스퍼레이션">캐스퍼 인스퍼레이션</option>
+              <option value="소나타">소나타</option>
+              <option value="제네시스">제네시스</option>
+            </select>
+          </p>
+          <p class="p01">
+            <label for="">보유차종 : </label>
+            <input type="text" name="my_car" required class="box01">
+          </p>
+          <p class="p01">
+            <label for="">시승희망일 : </label>
+            <input type="date" name="date" required class="box03">
+          </p>
+          <p class="p01 test_btn">
+            <input type="submit" value="예약하기">
+            <input type="reset" value="취소하기">
+          </p>
+        </fieldset>
+      </form>
+    </section>
+  </main>
+
+
+  <!-- 푸터영역 -->
+  <footer>
+    <div class="f_inner">
+      <h2>
+        <a href="index.html" title="메인페이지로 바로가기">
+          <img src="./images/logo-hyundai.a9ebdc6.png" alt="하단로고">
+        </a>
+      </h2>
+
+      <nav class="f_lnb">
+        <ul>
+          <li><a href="#" title="이용약관">이용약관</a></li>
+          <li><a href="#" title="개인정보 처리방침">개인정보 처리방침</a></li>
+          <li><a href="#" title="저작권안내">저작권안내</a></li>
+          <li><a href="#" title="공동인증서 안내">공동인증서 안내</a></li>
+          <li><a href="#" title="현대자동차 홈페이지">현대자동차 홈페이지</a></li>
+        </ul>
+      </nav>
+
+      <address>
+        <dl>
+          <dt>사업자등록번호 :</dt>
+          <dd>101-00-00000</dd>
+          <dt>통신판매업신고번호 : </dt>
+          <dd>2022-012345</dd>
+          <dt>대표이사 : </dt>
+          <dd>장재훈</dd>
+          <dt>주소 : </dt>
+          <dd>서울시 서초구 헌릉로 12</dd>
+          <dt>호스팅 서비스 제공 : </dt>
+          <dd>현대오토에버(주)</dd>
+        </dl>
+        <p>copyright&copy; 2023 hyundai motor company, all rights reserved.</p>
+      </address>
+    </div>
+  </footer>
+
+  
+</body>
+</html>

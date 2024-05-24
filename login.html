@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>로그인</title>
+  <!-- 초기화 -->
+  <link rel="stylesheet" type="text/css" href="./css/reset.css">
+  <!-- 기본서식 -->
+  <link rel="stylesheet" type="text/css" href="./css/base.css">
+  <!-- 공통서식 -->
+  <link rel="stylesheet" type="text/css" href="./css/common.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="./css/login.css">
+  <!-- 서브페이지 서식 -->
+  <style>
+    header{
+      position: sticky;
+      background: var(--m_bg_color);
+    }
+    header .gnb ul li a{
+      color: var(--f_color1);
+    }
+    header i.fas{color:var(--f_color1);}
+    
+
+
+  </style>  
+</head>
+<body>
+  <!-- 상단헤더영역 -->
+  <header>
+    <h1>
+      <a href="index.html" title="메인페이지로 바로가기">
+        <img src="./images/logo-casper_black.png" alt="캐스퍼로고">
+      </a>
+    </h1>
+
+    <!-- 내비게이션 -->
+    <nav class="gnb">
+      <ul>
+        <li><a href="#" title="소개">소개</a></li>
+        <li><a href="#" title="체험">체험</a></li>
+        <li><a href="#" title="이벤트">이벤트</a></li>
+        <li><a href="#" title="구매">구매</a></li>
+        <li><a href="#" title="고객지원">고객지원</a></li>
+      </ul>
+    </nav>
+
+    <a href="login.html"><i class="fas fa-user"></i></a>
+    <i class="fas fa-bell"></i><!-- 알림아이콘 -->
+  </header>
+
+  <main>
+    <form name="login">
+      <img src="./images/logo-casper_black.png" alt="로고">
+      <fieldset class="l_box">
+        <legend>로그인 폼</legend>
+        <div class="inner_box">
+          <p>
+            <label for="id_txt">ID : </label>
+            <input type="text" maxlength="16" id="id_txt" name="id_txt" placeholder="아이디를 입력해주세요." autocomplete="off" autofocus>
+          </p>
+          <p>
+            <label for="pw_txt">PW : </label>
+            <input type="password" maxlength="16" id="pw_txt" name="pw_txt" placeholder="비밀번호를 입력해주세요." autocomplete="off">
+          </p>
+        </div>
+          <P class="save">
+            <input type="checkbox" id="id_save">
+            <label for="id_save">아이디 저장</label>
+          </P>
+          <p><input type="submit" value="로그인" id="login_btn"></p>
+          <p class="a_link">
+            <a href="#" title="아이디 찾기">아이디 찾기</a>
+            <a href="#" title="비밀번호 찾기">비밀번호 찾기</a>
+            <a href="#" title="회원가입">회원가입</a>
+          </p>
+  
+      </fieldset>
+    </form>
+  </main>
+
+
+  <!-- 푸터영역 -->
+  <footer>
+    <div class="f_inner">
+      <h2>
+        <a href="index.html" title="메인페이지로 바로가기">
+          <img src="./images/logo-hyundai.a9ebdc6.png" alt="하단로고">
+        </a>
+      </h2>
+
+      <nav class="f_lnb">
+        <ul>
+          <li><a href="#" title="이용약관">이용약관</a></li>
+          <li><a href="#" title="개인정보 처리방침">개인정보 처리방침</a></li>
+          <li><a href="#" title="저작권안내">저작권안내</a></li>
+          <li><a href="#" title="공동인증서 안내">공동인증서 안내</a></li>
+          <li><a href="#" title="현대자동차 홈페이지">현대자동차 홈페이지</a></li>
+        </ul>
+      </nav>
+
+      <address>
+        <dl>
+          <dt>사업자등록번호 :</dt>
+          <dd>101-00-00000</dd>
+          <dt>통신판매업신고번호 : </dt>
+          <dd>2022-012345</dd>
+          <dt>대표이사 : </dt>
+          <dd>장재훈</dd>
+          <dt>주소 : </dt>
+          <dd>서울시 서초구 헌릉로 12</dd>
+          <dt>호스팅 서비스 제공 : </dt>
+          <dd>현대오토에버(주)</dd>
+        </dl>
+        <p>copyright&copy; 2023 hyundai motor company, all rights reserved.</p>
+      </address>
+    </div>
+  </footer>
+
+  <!-- 제이쿼리 라이브러리 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <!-- 제이쿼리 쿠키 -->
+  <script src="./script/jquery.cookie.js"></script>
+  <script>
+    $(document).ready(function(){
+      
+      let key = getCookie('idChk');//쿠키이름 저장
+      
+      if(key!=""){ //만약에 key변수에 값이 있다면 
+        $('#id_txt').val(key); //id값을 저장
+      }
+
+
+      if($('#id_txt').val() !=""){ //만약에 id값이 있다면
+        $('#id_save').attr('checked',true); //체크박스에 체크를 해둔다.
+      }
+
+      $('#id_save').change(function(){ //체크박스의 상태가 변경되면 아래내용 실행
+        if($('#id_save').is(':checked')){ //체크박스에 체크가 된 경우라면
+          setCookie('idChk', $('#id_txt').val(), 7); //쿠기를 생성하고
+        }else{ //그렇지 않으면
+          deleteCookie('idChk'); //쿠키를 삭제한다.
+        }
+      });
+
+      $('#id_txt').keyup(function(){ //체크박스에 키를 눌럿을 경우
+        if($('#id_save').is(':checked')){ //체크박스에 체크가 된 경우라면
+          setCookie('idChk', $('#id_txt').val(), 7 ); //쿠키를 생성한다.
+        }
+      })
+
+    });
+
+    function setCookie(cookieName, value, exdays){
+        var exdate = new Date();
+        exdate.setDate(exdate.getDate() + exdays);
+        var cookieValue = escape(value) + ((exdays==null) ? "" : "; expires=" + exdate.toGMTString());
+        document.cookie = cookieName + "=" + cookieValue;
+    }
+    
+    function deleteCookie(cookieName){
+      var expireDate = new Date();
+      expireDate.setDate(expireDate.getDate() - 1);
+      document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString();
+    }
+      
+    function getCookie(cookieName) {
+      cookieName = cookieName + '=';
+      var cookieData = document.cookie;
+      var start = cookieData.indexOf(cookieName);
+      var cookieValue = '';
+      if(start != -1){
+        start += cookieName.length;
+        var end = cookieData.indexOf(';', start);
+        if(end == -1)end = cookieData.length;
+        cookieValue = cookieData.substring(start, end);
+      }
+      return unescape(cookieValue);
+    }
+
+  </script>
+
+
+  
+</body>
+</html>

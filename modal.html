@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+
+
+
+
+  <!-- 제이쿼리 라이브러리 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<!-- 제이쿼리 쿠키 -->
+<script src="./script/jquery.cookie.js"></script>
+
+<script>
+  $(document).ready(function(){
+
+    let modal = `
+      <div class="modal_box">
+        <div class="m_inner">
+          <a>
+            <img src="./images/main_Popup_PC_450x600.jpg">
+          </a>
+          <p>
+            <input type="checkbox" id="ch">
+              <label for="ch">오늘하루 보지않음</label>
+            <input type="button" value="닫기" id="c_btn">
+          </p>
+        </div>
+      </div>
+    `
+
+    $('body').append(modal);
+
+    let ch = $('#ch');
+
+    if($.cookie('popup')=='none'){
+      $('.modal_box').hide();
+    }
+
+    function close_popup(){
+      if(ch.is(':checked')){
+        $.cookie('popup','none',{expires:1, path:'/'});
+        $('.modal_box').hide();
+      }else{
+        $('.modal_box').hide();
+      }
+
+    }
+    $('#ch, #c_btn').click(function(){
+      close_popup();
+    });
+  });
+
+
+</script>
+</body>
+</html>

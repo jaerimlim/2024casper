@@ -41,5 +41,46 @@ $(document).ready(function(){
     close_popup();
   })
 
+  // 이전 스크롤 위치 복원
+
+  
+  $('header').mouseenter(function(){
+    $('header').addClass('h_act');
+    $('header h1 img').attr('src','./images/logo-casper_black.png');
+  });
+
+  
+  $('header').mouseleave(function(){
+    let sPos = $(window).scrollTop();
+
+    if(sPos>=70){
+      $('header').addClass('h_act');
+      $('header h1 img').attr('src','./images/logo-casper_black.png');
+    }else{
+      $('header').removeClass('h_act');
+      $('header h1 img').attr('src','./images/logo-casper-white.png');
+    }  
+  });
+  
+  $(window).scroll(function(){
+    let sPos = $(this).scrollTop();
+    console.log(sPos);
+    if(sPos>=70){
+        $('header').addClass('h_act');
+        $('header h1 img').attr('src','./images/logo-casper_black.png');
+    }else{
+      $('header').removeClass('h_act');
+      $('header h1 img').attr('src','./images/logo-casper-white.png');
+    }
+    
+  });
+  $(window).trigger('scroll');
 
 });
+
+
+
+// 랜덤배너 만들기 
+let r_num = Math.floor(Math.random()*3+1);
+document.write(r_num); //1~8까지 랜덤숫자
+document.getElementById('r_banner').src='./images/ran_banner0'+r_num + '.jpg';

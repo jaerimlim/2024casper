@@ -204,6 +204,8 @@ main{
     opacity: 100;
   }
 }
+.act1{animation:  ani1 5s forwards;}
+.act2{animation:  ani2 5s forwards;}
 
 .intro_title_left{
   top:100px; left:130px; 

@@ -41,7 +41,7 @@ $(document).ready(function(){
     close_popup();
   })
 
-  // 이전 스크롤 위치 복원
+  
 
   
   $('header').mouseenter(function(){
@@ -52,10 +52,9 @@ $(document).ready(function(){
   
   $('header').mouseleave(function(){
     let sPos = $(window).scrollTop();
-
-    if(sPos>=70){
-      $('header').addClass('h_act');
-      $('header h1 img').attr('src','./images/logo-casper_black.png');
+    if(sPos>=1){
+      // $('header').addClass('h_act');
+      // $('header h1 img').attr('src','./images/logo-casper_black.png');
     }else{
       $('header').removeClass('h_act');
       $('header h1 img').attr('src','./images/logo-casper-white.png');
@@ -65,7 +64,7 @@ $(document).ready(function(){
   $(window).scroll(function(){
     let sPos = $(this).scrollTop();
     console.log(sPos);
-    if(sPos>=70){
+    if(sPos>=1){
         $('header').addClass('h_act');
         $('header h1 img').attr('src','./images/logo-casper_black.png');
     }else{
@@ -74,7 +73,58 @@ $(document).ready(function(){
     }
     
   });
+  
+  //새로고침 시 스크롤이벤트 업데이트 ! 
   $(window).trigger('scroll');
+
+  
+  //1. 내비게이션 변수선언
+  let nav = $('#m_navi a');
+
+  //2. 클릭시 해당 아이디 값을 찾아서 페이지 상단으로 scroll해서 올리기
+  
+  nav.click(function(){
+    let i = $(this).index();
+    console.log(i); //0,1,2,3,4
+    
+    let id_name = $(this).attr('href');
+    let offTop = $(id_name).offset().top;
+    $('html, body').animate({scrollTop :offTop - 70}, 500);
+
+
+    //i가 0일떄 3번쨰 section(#intro) 인덱스번호 2번이 나와야함
+    // if(i==0){
+    //   $('html, body').animate({scrollTop:$('#intro').offset().top},500);
+    // }else if(i==1){
+    //   $('html, body').animate({scrollTop:$('#drive_con').offset().top},500);
+    // }else if(i==2){
+    //   $('html, body').animate({scrollTop:$('#event_con').offset().top},500);
+    // }else if(i==3){
+    //   $('html, body').animate({scrollTop:$('#buy_con').offset().top},500);
+    // }else{
+    //   $('html, body').animate({scrollTop:$('#cs_con').offset().top},500);
+    // }
+    //i가 1일떄 4번쨰 section(#drive_con) 인덱스번호 3번이 나와야함
+    //i가 2일떄 5번쨰 section(#event_con) 인덱스번호 4번이 나와야함
+    //i가 3일떄 6번쨰 section(#buy_con) 인덱스번호 5번이 나와야함
+    //i가 4일떄 7번쨰 section(#cs_con) 인덱스번호 6번이 나와야함
+
+    // 섹션의 인덱스를 기반으로 스크롤
+    // let sectionIndex = i + 2;
+    // $('html, body').animate({
+    // scrollTop: $('#' + $('section').eq(sectionIndex).attr('id')).offset().top
+    // }, 500);
+  });
+
+
+  // $('top버튼').click(function(
+  //   $('html, body').animate({'scrollTop':'0px'},500);
+  // ));
+  
+  if(sPos>=1650){
+    $('.intro_title_left').addClass('act1');
+    $('.intro_title_right').addClass('act2');
+  }
 
 });
 

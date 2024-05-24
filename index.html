@@ -305,7 +305,7 @@
         </li>
       </ul>
       <div class="random_banner">
-        <img src="./images/ran_banner01.jpg" alt="">
+        <img src="./images/ran_banner01.jpg" alt="" id="r_banner">
       </div>
     </section>
 
@@ -389,21 +389,13 @@
       }
     });
 
-    $(document).ready(function() {
-    const banners = [
-        { src: './images/ran_banner01.jpg', alt: '배너 1' },
-        { src: './images/ran_banner02.jpg', alt: '배너 2' },
-        { src: './images/ran_banner03.jpg', alt: '배너 3' }
-    ];
 
-    function getRandomBanner() {
-        const randomIndex = Math.floor(Math.random() * banners.length);
-        return banners[randomIndex];
-    }
-
-    const randomBanner = getRandomBanner();
-    $('.random_banner img').attr('src', randomBanner.src).attr('alt', randomBanner.alt);
-});
+    // 랜덤배너 만들기 
+    let r_num = Math.floor(Math.random()*3+1);
+    document.write(r_num); //1~8까지 랜덤숫자
+    document.getElementById('r_banner').src='./images/ran_banner0'+r_num + '.jpg';
+    
+  
   </script>
   
 </body>
